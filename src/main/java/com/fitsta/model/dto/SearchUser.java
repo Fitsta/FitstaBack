@@ -8,9 +8,11 @@ import lombok.*;
 public class SearchUser {
 
     // 추천유저, 유저검색,
+    private int userId;
     private String profileImg;
     private String nickname;
     private String name;
-    private boolean follow = true;
+    private int followerCount;
+    private boolean isFollow;
 
 }
