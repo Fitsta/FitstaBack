@@ -7,6 +7,7 @@ import lombok.*;
 @ToString
 public class SearchUser {
 
+    // 추천유저, 유저검색,
     private String profileImg;
     private String nickname;
     private String name;

@@ -13,8 +13,8 @@ public class SearchUserServiceImpl implements SearchUserService {
     private SearchUserDao userDao;
 
     @Autowired
-    public void setUserDao(SearchUserDao userDao) {
-        this.userDao = userDao;
+    public void setUserDao(SearchUserDao searchUserDao) {
+        this.userDao = searchUserDao;
     }
 
     // 팔로우순 상위 20명 유저 불러오기
@@ -22,5 +22,6 @@ public class SearchUserServiceImpl implements SearchUserService {
     public List<SearchUser> getUserList() {
         return userDao.getUserList();
     }
+
 
 }
