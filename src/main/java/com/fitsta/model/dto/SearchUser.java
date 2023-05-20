@@ -5,7 +5,7 @@ import lombok.*;
 @Setter
 @RequiredArgsConstructor
 @ToString
-public class User {
+public class SearchUser {
 
     private String profileImg;
     private String nickname;
