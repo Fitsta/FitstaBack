@@ -4,9 +4,22 @@
 <mapper namespace="com.fitsta.model.dao.SearchUserDao">
 	
 	<!-- 팔로우 순 20명 유저 -->
-	<select id="getUserList" resultType="SearchUser">
-		SELECT profileImg, nickname, name
-		FROM user Limit 20;
+	<select id="getUserListLimitTwenty" parameterType="int" resultType="SearchUser">
+		SELECT A.userId, A.profileImg, A.nickname, A.name,
+			   (SELECT COUNT(*) FROM follow WHERE followerId = A.userId) as followerCount,
+			   (SELECT COUNT(*) FROM follow WHERE followingId = #{ myId } and followerId = A.userId) AS isFollow
+		FROM user A
+		WHERE userId != #{ myId }
+		ORDER BY followerCount DESC Limit 20;
+	</select>
+
+	<select id="searchUserByNameAndNickname" parameterType="String" resultType="SearchUser">
+		SELECT A.userId, A.profileImg, A.nickname, A.name,
+		(SELECT COUNT(*) FROM follow WHERE followerId = A.userId) as followerCount,
+		(SELECT COUNT(*) FROM follow WHERE followingId = #{ myId } and followerId = A.userId) AS isFollow
+		FROM user A
+		WHERE userId != #{ myId } AND (A.nickname LIKE concat('%', #{ keyword }, '%') or
+									   A.nickname LIKE concat('%', #{ keyword }, '%'))
 	</select>
 	
 </mapper>
