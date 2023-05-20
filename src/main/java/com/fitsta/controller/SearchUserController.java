@@ -22,4 +22,5 @@ public class SearchUserController {
         List<SearchUser> userList = userService.getUserList();
         return new ResponseEntity<List<SearchUser>>(userList, HttpStatus.OK);
     }
+
 }
