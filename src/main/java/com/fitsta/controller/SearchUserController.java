@@ -2,6 +2,7 @@ package com.fitsta.controller;
 
 import com.fitsta.model.dto.SearchUser;
 import com.fitsta.model.service.SearchUserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/searchUser")
 @CrossOrigin("*")
+@Api(tags = "SearchUser Controller")
 public class SearchUserController {
 
     @Autowired

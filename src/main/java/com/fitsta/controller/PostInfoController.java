@@ -2,6 +2,7 @@ package com.fitsta.controller;
 
 import com.fitsta.model.dto.Post;
 import com.fitsta.model.service.PostInfoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/postInfo")
 @CrossOrigin("*")
+@Api(tags = "PostInfo Controller")
 public class PostInfoController {
 
     @Autowired
