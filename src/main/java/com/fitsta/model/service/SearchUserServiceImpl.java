@@ -10,17 +10,23 @@ import java.util.List;
 @Service
 public class SearchUserServiceImpl implements SearchUserService {
 
-    private SearchUserDao userDao;
+    private SearchUserDao searchUserDao;
 
     @Autowired
-    public void setUserDao(SearchUserDao userDao) {
-        this.userDao = userDao;
+    public void setUserDao(SearchUserDao searchUserDao) {
+        this.searchUserDao = searchUserDao;
     }
 
-    // 팔로우순 상위 20명 유저 불러오기
+    // 팔로워 수 상위 20명 유저(본인 제외)
     @Override
-    public List<SearchUser> getUserList() {
-        return userDao.getUserList();
+    public List<SearchUser> getUserListLimitTwenty(int myId) {
+        return searchUserDao.getUserListLimitTwenty(myId);
+    }
+
+    // name, nickname 포함된 유저 검색
+    @Override
+    public List<SearchUser> searchUserByNameAndNickname(String myId, String keyword) {
+        return searchUserDao.searchUserByNameAndNickname(myId, keyword);
     }
 
 }

@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fitsta.model.dao._____">
+<mapper namespace="com.fitsta.model.dao.PostInfoDao">
+
+	<!-- 좋아요순 상위 10개 post -->
+	<select id="getPostOrderByLikeCount" parameterType="int" resultType="PostInfo">
+		SELECT A.postId, A.userId AS writerId, A.date AS regDate, A.postComment, A.filterName, A.img,
+			   (SELECT COUNT(*) FROM post_like WHERE postId = A.postId) AS likeCount,
+			   (SELECT nickname FROM user WHERE userId = A.userId) AS userName,
+			   (SELECT COUNT(*) FROM comment WHERE postId = A.postId) AS commentCount,
+			   (SELECT profileImg FROM user WHERE userId = A.userId) AS profileImg,
+			   (SELECT COUNT(userId) FROM post_like WHERE userId = #{ myId } AND postId = A.postId) AS isLike
+		FROM post A
+		WHERE A.userId != #{ myId }
+		ORDER BY likeCount DESC Limit 10;
+	</select>
+
+	<!-- 내가 팔로우한 사람의 post(상위 10개 post 제외) -->
+	<select id="getMyFollowerPostList" parameterType="int" resultType="PostInfo">
+		SELECT A.postId, A.userId AS writerId, A.date AS regDate, A.postComment, A.filterName, A.img,
+			   (SELECT COUNT(*) FROM post_like WHERE postId = A.postId) AS likeCount,
+			   (SELECT nickname FROM user WHERE userId = A.userId) AS userName,
+			   (SELECT COUNT(*) FROM comment WHERE postId = A.postId) AS commentCount,
+			   (SELECT profileImg FROM user WHERE userId = A.userId) AS profileImg,
+			   (SELECT COUNT(userId) FROM post_like WHERE userId = #{ myId } AND postId = A.postId) AS isLike
+		FROM post A JOIN (SELECT followerId FROM follow WHERE followingId = #{ myId }) B
+		ON A.userId = B.followerId
+		WHERE A.postId NOT IN(
+			SELECT * FROM (
+				SELECT C.postId
+				FROM post C
+				WHERE A.userId != #{ myId }
+				ORDER BY (SELECT COUNT(*) FROM post_like WHERE postId = C.postId) DESC Limit 10) AS temp
+			)
+		ORDER BY regDate DESC;
+	</select>
+
+	<!-- 특정 유저가 등록한 post -->
+	<select id="getUserPost" parameterType="int" resultType="PostInfo">
+		SELECT A.postId, A.userId AS writerId, A.date AS regDate, A.postComment, A.filterName, A.img,
+			   (SELECT COUNT(*) FROM post_like WHERE postId = A.postId) AS likeCount,
+			   (SELECT nickname FROM user WHERE userId = A.userId) AS userName,
+			   (SELECT COUNT(*) FROM comment WHERE postId = A.postId) AS commentCount,
+			   (SELECT profileImg FROM user WHERE userId = A.userId) AS profileImg,
+			   (SELECT COUNT(userId) FROM post_like WHERE userId = 2 AND postId = A.postId) AS isLike
+		FROM post A
+		WHERE A.userId = #{ userId };
+	</select>
 
 </mapper>
