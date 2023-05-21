@@ -6,7 +6,8 @@ import lombok.*;
 @RequiredArgsConstructor
 @ToString
 public class Comment {
-    // 댓글 수정 삭제시 사용
+    // 댓글 등록 수정 삭제시 사용
+    private int commentId;
     private String comment;
     private int userId;
     private int postId;
