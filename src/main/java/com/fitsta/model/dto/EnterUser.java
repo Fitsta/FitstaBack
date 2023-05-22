@@ -12,5 +12,4 @@ public class EnterUser {
     private String password;
     private String nickname;
     private String profileImg;
-
 }
