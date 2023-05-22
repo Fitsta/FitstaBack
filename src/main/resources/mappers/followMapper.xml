@@ -3,12 +3,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fitsta.model.dao.FollowDao">
 	<!--팔로우-->
-	<insert id="follow" parameterType="Integer">
-		INSERT INTO follow
-		VALUES
+	<!--followerId는 로그인한 Id로 고정-->
+	<insert id="follow" parameterType="map">
+		INSERT INTO follow (followingId, followerId)
+		VALUES (#{followingId}, #{followerId})
 	</insert>
-	<!--언팔로우-->
-	<delete id="unFollow" parameterType="Integer">
 
+	<!--언팔로우-->
+	<!--followerId는 로그인한 Id로 고정-->
+	<delete id="unFollow" parameterType="map">
+		DELETE FROM follow WHERE followingId = #{followingId}
 	</delete>
 </mapper>

@@ -21,17 +21,17 @@ public class CommentController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    // 댓글 삭제("/delete")
-    @DeleteMapping("/delete/{commentId}")
-    public ResponseEntity<?> delete(Integer commentId) {
-        commentService.deleteComment(commentId);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
-
     // 댓글 수정("/update")
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody Comment comment) {
         commentService.updateComment(comment);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    // 댓글 삭제("/delete")
+    @DeleteMapping("/delete/{commentId}")
+    public ResponseEntity<?> delete(Integer commentId) {
+        commentService.deleteComment(commentId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }
