@@ -28,7 +28,7 @@ public class PostController {
     }
     // 게시물 삭제
     @DeleteMapping("/delete/{postId}")
-    public ResponseEntity<?> delete(Integer postId) {
+    public ResponseEntity<?> delete(int postId) {
         postService.deletePost(postId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }

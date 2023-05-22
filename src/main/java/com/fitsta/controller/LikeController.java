@@ -15,14 +15,14 @@ public class LikeController {
 
     // like
     @PostMapping("/{postId}")
-    public ResponseEntity<?> like(int postId, int userId) {
+    public ResponseEntity<?> like(@PathVariable int postId, int userId) {
         likeService.like(postId, userId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     // disLike
     @DeleteMapping("/{postId}")
-    public ResponseEntity<?> disLike(int postId, int userId) {
+    public ResponseEntity<?> disLike(@PathVariable int postId, int userId) {
         likeService.unlike(postId, userId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
