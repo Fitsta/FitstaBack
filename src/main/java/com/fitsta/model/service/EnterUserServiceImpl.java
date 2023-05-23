@@ -36,4 +36,14 @@ public class EnterUserServiceImpl implements EnterUserService{
     public EnterUser getUserInfoByEmail(String email) {
         return enterUserDao.getUserInfoByEmail(email);
     }
+
+    @Override
+    public void updateUserInfo(EnterUser enterUser) {
+        enterUserDao.updateUserInfo(enterUser);
+    }
+
+    @Override
+    public void updateUserInfoWhthImg(EnterUser enterUser) {
+        enterUserDao.updateUserInfoWhthImg(enterUser);
+    }
 }

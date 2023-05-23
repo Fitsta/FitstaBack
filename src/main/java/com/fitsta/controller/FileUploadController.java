@@ -1,6 +1,8 @@
 package com.fitsta.controller;
 
+import com.fitsta.model.dto.EnterUser;
 import com.fitsta.model.dto.Post;
+import com.fitsta.model.service.EnterUserService;
 import com.fitsta.model.service.PostService;
 import com.fitsta.model.service.S3Upload;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,9 @@ public class FileUploadController {
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    EnterUserService enterUserService;
 
     private final S3Upload s3Upload;
 
@@ -54,5 +59,17 @@ public class FileUploadController {
         }
         System.out.println(post);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/update/profile")
+    public ResponseEntity<?> updateProfile(@RequestParam("images") MultipartFile multipartFile, EnterUser enterUser) throws IOException {
+        if (multipartFile.getSize() > 0) {
+            String s3URL = s3Upload.upload(multipartFile);
+            enterUser.setProfileImg(s3URL);
+            enterUserService.updateUserInfoWhthImg(enterUser);
+        } else {
+            enterUserService.updateUserInfo(enterUser);
+        }
+        return new ResponseEntity<EnterUser>(enterUser, HttpStatus.CREATED);
     }
 }

@@ -13,5 +13,8 @@ public interface EnterUserDao {
     int getUserIdByEmail(String email);
     // 이메일로 유저 정보 받기
     EnterUser getUserInfoByEmail(String email);
-
+    // 사진제외 유저정보 수정
+    void updateUserInfo(EnterUser enterUser);
+    // 사진포함 유저정보 수정
+    void updateUserInfoWhthImg(EnterUser enterUser);
 }
