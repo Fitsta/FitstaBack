@@ -11,7 +11,7 @@ import java.util.HashMap;
 @CrossOrigin("*")
 public class KaKaoController {
 
-    private String clientId = "";
+    private String clientId = "a7e51c2902f13febf913e240bbf81f77";
 
     KakaoAPI kakaoApi = new KakaoAPI();
 

@@ -12,8 +12,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 public class KakaoAPI {
-    private String clientId = "";
-    private String clientSecret = "";
+    private String clientId = "a7e51c2902f13febf913e240bbf81f77";
+    private String clientSecret = "6RjNLtsyllhFj46nTNIKBWwUj8UsIlOq";
 
     public String getAccessToken(String code) {
 
