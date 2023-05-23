@@ -1,21 +1,17 @@
 package com.fitsta.controller;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.HashMap;
 
 @RestController
+@RequestMapping("/api/kakao")
 @CrossOrigin("*")
 public class KaKaoController {
 
-    private String clientId = "";
+    private String clientId = "a7e51c2902f13febf913e240bbf81f77";
 
     KakaoAPI kakaoApi = new KakaoAPI();
 
