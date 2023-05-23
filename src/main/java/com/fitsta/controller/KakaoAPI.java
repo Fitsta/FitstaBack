@@ -12,9 +12,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 public class KakaoAPI {
-
-    private String clientId = "";
-    private String clientSecret = "";
+    private String clientId = "a7e51c2902f13febf913e240bbf81f77";
+    private String clientSecret = "6RjNLtsyllhFj46nTNIKBWwUj8UsIlOq";
 
     public String getAccessToken(String code) {
 
@@ -56,7 +55,7 @@ public class KakaoAPI {
             while((line = br.readLine())!=null) {
                 result += line;
             }
-            System.out.println("resopnsebody = " + result);
+            System.out.println("responsebody = " + result);
 
             //json 형식으로 파시변환
             JsonParser parser = new JsonParser();
@@ -81,7 +80,6 @@ public class KakaoAPI {
         HashMap<String, Object> userInfo = new HashMap<String, Object>();
         String reqUrl = "https://kapi.kakao.com/v2/user/me";
 
-
         //access_token을 이용하여 사용자 정보 조회
         try {
             URL url = new URL(reqUrl);
@@ -94,8 +92,7 @@ public class KakaoAPI {
             int responseCode = conn.getResponseCode();
             System.out.println("responseCode : " + responseCode);
 
-
-            //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+            //요청을 통해 얻은 JSON 타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
             String line = "";
