@@ -12,4 +12,12 @@
 	<select id="check" parameterType="String" resultType="EnterUser">
 		SELECT name, email, password, nickname, profileImg FROM user WHERE email = #{id}
 	</select>
+
+	<select id="getUserIdByEmail" parameterType="String" resultType="int">
+		SELECT userId from user WHERE email = #{email};
+	</select>
+
+	<select id="getUserInfoByEmail" resultType="EnterUser" parameterType="String">
+		SELECT userId, name, email, nickname, profileImg FROM user WHERE email = #{email};
+	</select>
 </mapper>
