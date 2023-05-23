@@ -9,11 +9,14 @@ import java.util.List;
 
 @Service
 public class EnterUserServiceImpl implements EnterUserService{
+
     private EnterUserDao enterUserDao;
+
     @Autowired
     public void setEnterUserDao(EnterUserDao enterUserDao) {
         this.enterUserDao = enterUserDao;
     }
+
     @Override
     public void enterUser(EnterUser enterUser) {
         enterUserDao.enterUser(enterUser);
@@ -22,5 +25,15 @@ public class EnterUserServiceImpl implements EnterUserService{
     @Override
     public EnterUser check(String id) {
         return enterUserDao.check(id);
+    }
+
+    @Override
+    public int getUserIdByEmail(String email) {
+        return enterUserDao.getUserIdByEmail(email);
+    }
+
+    @Override
+    public EnterUser getUserInfoByEmail(String email) {
+        return enterUserDao.getUserInfoByEmail(email);
     }
 }

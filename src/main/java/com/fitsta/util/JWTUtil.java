@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Component
 public class JWTUtil {
-    private static final String SALT = "SSAFIT";
+    private static final String SALT = "Fitsta";
 
     // 토큰 생성
     // 인자로 키와 벨류가 넘어왔다라고만 처리 (한가지의 정보만 넣는다고 가정)

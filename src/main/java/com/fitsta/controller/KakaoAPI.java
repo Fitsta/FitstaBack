@@ -13,8 +13,8 @@ import com.google.gson.JsonParser;
 
 public class KakaoAPI {
 
-    private String clientId = "";
-    private String clientSecret = "";
+    private String clientId = "a7e51c2902f13febf913e240bbf81f77";
+    private String clientSecret = "6RjNLtsyllhFj46nTNIKBWwUj8UsIlOq";
 
     public String getAccessToken(String code) {
 
@@ -45,7 +45,6 @@ public class KakaoAPI {
             bw.flush();
 
             int responsCode = conn.getResponseCode();
-            System.out.println("3. responsCode = " + responsCode);
 
             //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -56,7 +55,6 @@ public class KakaoAPI {
             while((line = br.readLine())!=null) {
                 result += line;
             }
-            System.out.println("resopnsebody = " + result);
 
             //json 형식으로 파시변환
             JsonParser parser = new JsonParser();
@@ -92,7 +90,7 @@ public class KakaoAPI {
             conn.setRequestProperty("Authorization", "Bearer " + access_token);
 
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
+//            System.out.println("responseCode : " + responseCode);
 
 
             //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
@@ -105,20 +103,26 @@ public class KakaoAPI {
                 result += line;
             }
 
-            System.out.println("resopnse body =" + result);
+//            System.out.println("resopnse body =" + result);
 
             //Gson 라이브러리로 JSON파싱
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
 
             String email = "";
+            String profileImg = "";
+            String nickname = "";
+
             boolean has_email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
             if(has_email) {
                 email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+                nickname = element.getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString();
+                profileImg = element.getAsJsonObject().get("properties").getAsJsonObject().get("profile_image").getAsString();
             }
 
             userInfo.put("email", email);
-
+            userInfo.put("nickname", nickname);
+            userInfo.put("profileImg", profileImg);
         } catch (Exception e) {
             e.printStackTrace();
         }
