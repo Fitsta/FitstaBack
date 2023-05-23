@@ -12,6 +12,6 @@
 	<!--언팔로우-->
 	<!--followerId는 로그인한 Id로 고정-->
 	<delete id="unFollow" parameterType="map">
-		DELETE FROM follow WHERE followingId = #{followingId}
+		DELETE FROM follow WHERE followingId = #{followingId} and followerId = #{followerId}
 	</delete>
 </mapper>

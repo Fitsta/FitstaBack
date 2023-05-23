@@ -4,7 +4,12 @@
 <mapper namespace="com.fitsta.model.dao.EnterUserDao">
 	<!-- 회원 가입 -->
 	<insert id="enterUser" parameterType="EnterUser">
-		INSERT INTO user
+		INSERT INTO user (name, email, password, nickname, profileImg)
 		VALUES (#{name}, #{email}, #{password}, #{nickname}, #{profileImg});
 	</insert>
+
+	<!-- 중복체크 -->
+	<select id="check" parameterType="String" resultType="EnterUser">
+		SELECT name, email, password, nickname, profileImg FROM user WHERE email = #{id}
+	</select>
 </mapper>
