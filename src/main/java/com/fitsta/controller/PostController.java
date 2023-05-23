@@ -11,9 +11,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/post")
 @CrossOrigin("*")
 public class PostController {
+
     @Autowired
     PostService postService;
 
+    // 게시물 조회
+    @GetMapping("/{postId}")
+    public ResponseEntity<?> getPost(@PathVariable int postId) {
+        Post post = postService.getPost(postId);
+        return new ResponseEntity<Post>(post, HttpStatus.OK);
+    }
     // 게시물 등록
     @PostMapping("/regist")
     public ResponseEntity<?> regist(@RequestBody Post post) {
@@ -27,8 +34,8 @@ public class PostController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
     // 게시물 삭제
-    @DeleteMapping("/delete/{postId}")
-    public ResponseEntity<?> delete(int postId) {
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<?> delete(@PathVariable Integer postId) {
         postService.deletePost(postId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }

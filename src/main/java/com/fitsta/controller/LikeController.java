@@ -1,5 +1,6 @@
 package com.fitsta.controller;
 
+import com.fitsta.model.dto.Like;
 import com.fitsta.model.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,16 +15,16 @@ public class LikeController {
     LikeService likeService;
 
     // like
-    @PostMapping("/{postId}")
-    public ResponseEntity<?> like(@PathVariable int postId, int userId) {
-        likeService.like(postId, userId);
+    @PostMapping("/")
+    public ResponseEntity<?> like(@RequestBody Like like) {
+        likeService.like(like.getPostId(), like.getUserId());
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     // disLike
-    @DeleteMapping("/{postId}")
-    public ResponseEntity<?> disLike(@PathVariable int postId, int userId) {
-        likeService.unlike(postId, userId);
+    @PostMapping("/dislike")
+    public ResponseEntity<?> disLike(@RequestBody Like like) {
+        likeService.unlike(like.getPostId(), like.getUserId());
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fitsta.model.dao.ProfileDao">
+
+	<select id="getFollowerCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM follow WHERE followingId = #{userId};
+	</select>
+
+	<select id="getFollowingCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM follow WHERE followerId = #{userId};
+	</select>
+
+	<select id="getPostList" parameterType="int" resultType="Post">
+		SELECT * FROM post WHERE userId = #{userId};
+	</select>
+
+	<select id="getProfileImg" parameterType="int" resultType="String">
+		SELECT profileImg FROM user WHERE userId = #{userId};
+	</select>
+	<select id="getUserNickname" parameterType="int" resultType="String">
+		SELECT nickname FROM user WHERE userId = #{userId};
+	</select>
+</mapper>

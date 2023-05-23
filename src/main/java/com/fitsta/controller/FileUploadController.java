@@ -1,8 +1,10 @@
 package com.fitsta.controller;
 
 import com.fitsta.model.dto.Post;
+import com.fitsta.model.service.PostService;
 import com.fitsta.model.service.S3Upload;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,9 +20,10 @@ import java.io.IOException;
 @CrossOrigin("*")
 public class FileUploadController {
 
-    private final S3Upload s3Upload;
+    @Autowired
+    PostService postService;
 
-//    private String img;
+    private final S3Upload s3Upload;
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("images") MultipartFile multipartFile, Post post) throws IOException {
@@ -29,8 +32,26 @@ public class FileUploadController {
         // private String postComment;
         // private String filterName;
         // String img 이거는 아래리턴 값으로 받아서 매퍼에 저장
-        String s3URL = s3Upload.upload(multipartFile);
-        post.setImg(s3URL);
+        if (multipartFile.getSize() > 0) {
+            String s3URL = s3Upload.upload(multipartFile);
+            post.setImg(s3URL);
+            postService.addPost(post);
+        } else {
+            postService.addPost(post);
+        }
+        System.out.println(post);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/upload/update")
+    public ResponseEntity<?> uploadFileUpdate(@RequestParam("images") MultipartFile multipartFile, Post post) throws IOException {
+        if (multipartFile.getSize() > 0) {
+            String s3URL = s3Upload.upload(multipartFile);
+            post.setImg(s3URL);
+            postService.updatePost(post);
+        } else {
+            postService.updatePost(post);
+        }
         System.out.println(post);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }

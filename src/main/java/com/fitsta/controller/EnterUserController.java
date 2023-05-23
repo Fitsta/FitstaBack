@@ -1,6 +1,5 @@
 package com.fitsta.controller;
 
-import com.fitsta.model.dto.Comment;
 import com.fitsta.model.dto.EnterUser;
 import com.fitsta.model.service.EnterUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,11 @@ public class EnterUserController {
 
     // 회원 가입때 필요한 정보 넘기기("/")
     @PostMapping("/")
-    public ResponseEntity<?> enter(@RequestBody EnterUser enterUser) {
-        enterUserService.enterUser(enterUser);
+    public ResponseEntity<?> enter(@RequestBody EnterUser user) {
+        if (enterUserService.check(user.getEmail()) != null) {
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        enterUserService.enterUser(user);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }
