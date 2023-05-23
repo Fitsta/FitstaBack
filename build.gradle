@@ -38,6 +38,14 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.9.0'
 
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+	// jdk11 에서는 관련 모듈이 기본 참조되지 않아 에러가 발생한다고 한다.
+	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+	// https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core
+	implementation group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0.1'
+	// https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
+	implementation group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.1'
 }
 
 tasks.named('test') {

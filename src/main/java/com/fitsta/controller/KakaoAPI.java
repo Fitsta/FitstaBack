@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 public class KakaoAPI {
+
     private String clientId = "a7e51c2902f13febf913e240bbf81f77";
     private String clientSecret = "6RjNLtsyllhFj46nTNIKBWwUj8UsIlOq";
 
@@ -44,7 +45,6 @@ public class KakaoAPI {
             bw.flush();
 
             int responsCode = conn.getResponseCode();
-            System.out.println("3. responsCode = " + responsCode);
 
             //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -55,7 +55,6 @@ public class KakaoAPI {
             while((line = br.readLine())!=null) {
                 result += line;
             }
-            System.out.println("responsebody = " + result);
 
             //json 형식으로 파시변환
             JsonParser parser = new JsonParser();
@@ -80,6 +79,7 @@ public class KakaoAPI {
         HashMap<String, Object> userInfo = new HashMap<String, Object>();
         String reqUrl = "https://kapi.kakao.com/v2/user/me";
 
+
         //access_token을 이용하여 사용자 정보 조회
         try {
             URL url = new URL(reqUrl);
@@ -90,9 +90,10 @@ public class KakaoAPI {
             conn.setRequestProperty("Authorization", "Bearer " + access_token);
 
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
+//            System.out.println("responseCode : " + responseCode);
 
-            //요청을 통해 얻은 JSON 타입의 Response 메세지 읽어오기
+
+            //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
             String line = "";
@@ -102,20 +103,26 @@ public class KakaoAPI {
                 result += line;
             }
 
-            System.out.println("resopnse body =" + result);
+//            System.out.println("resopnse body =" + result);
 
             //Gson 라이브러리로 JSON파싱
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
 
             String email = "";
+            String profileImg = "";
+            String nickname = "";
+
             boolean has_email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
             if(has_email) {
                 email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+                nickname = element.getAsJsonObject().get("properties").getAsJsonObject().get("nickname").getAsString();
+                profileImg = element.getAsJsonObject().get("properties").getAsJsonObject().get("profile_image").getAsString();
             }
 
             userInfo.put("email", email);
-
+            userInfo.put("nickname", nickname);
+            userInfo.put("profileImg", profileImg);
         } catch (Exception e) {
             e.printStackTrace();
         }
