@@ -18,4 +18,9 @@ public class EnterUserServiceImpl implements EnterUserService{
     public void enterUser(EnterUser enterUser) {
         enterUserDao.enterUser(enterUser);
     }
+
+    @Override
+    public EnterUser check(String id) {
+        return enterUserDao.check(id);
+    }
 }

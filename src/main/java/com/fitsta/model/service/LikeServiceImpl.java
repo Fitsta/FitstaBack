@@ -12,12 +12,12 @@ public class LikeServiceImpl implements LikeService{
         this.likeDao = likeDao;
     }
     @Override
-    public void like(int postId) {
-        likeDao.like(postId);
+    public void like(int postId, int userId) {
+        likeDao.like(postId, userId);
     }
 
     @Override
-    public void unlike(int postId) {
-        likeDao.unlike(postId);
+    public void unlike(int postId, int userId) {
+        likeDao.unlike(postId, userId);
     }
 }

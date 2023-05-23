@@ -12,13 +12,15 @@ public class FollowServiceImpl implements  FollowService{
     public void setFollowDao(FollowDao followDao) {
         this.followDao = followDao;
     }
-    @Override
-    public void follow(int followingId) {
-        followDao.follow(followingId);
-    }
 
     @Override
-    public void unFollow(int followingId) {
-        followDao.unFollow(followingId);
+    public void follow(int followingId, int followerId) {
+        followDao.follow(followingId, followerId);
+    }
+
+
+    @Override
+    public void unFollow(int followingId, int followerId) {
+        followDao.unFollow(followingId, followerId);
     }
 }
