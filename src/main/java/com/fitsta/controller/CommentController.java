@@ -30,7 +30,7 @@ public class CommentController {
 
     // 댓글 삭제("/delete")
     @DeleteMapping("/delete/{commentId}")
-    public ResponseEntity<?> delete(Integer commentId) {
+    public ResponseEntity<?> delete(@PathVariable int commentId) {
         commentService.deleteComment(commentId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
