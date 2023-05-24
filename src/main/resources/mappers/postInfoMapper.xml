@@ -45,7 +45,8 @@
 			   (SELECT profileImg FROM user WHERE userId = A.userId) AS profileImg,
 			   (SELECT COUNT(userId) FROM post_like WHERE userId = 2 AND postId = A.postId) AS isLike
 		FROM post A
-		WHERE A.userId = #{ userId };
+		WHERE A.userId = #{ userId }
+		ORDER BY regDate DESC;
 	</select>
 
 </mapper>
