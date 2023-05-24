@@ -6,6 +6,7 @@
         SELECT u.profileImg, u.nickname, c.comment, c.date
         FROM user u JOIN comment c
         ON u.userId = c.userId
-        WHERE c.postId = #{postId};
+        WHERE c.postId = #{postId}
+        ORDER BY c.date DESC;
     </select>
 </mapper>

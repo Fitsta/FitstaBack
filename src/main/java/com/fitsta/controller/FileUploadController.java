@@ -49,8 +49,8 @@ public class FileUploadController {
     }
 
     @PostMapping("/upload/update")
-    public ResponseEntity<?> uploadFileUpdate(@RequestParam("images") MultipartFile multipartFile, Post post) throws IOException {
-        if (multipartFile.getSize() > 0) {
+    public ResponseEntity<?> uploadFileUpdate(@RequestParam(value = "images", required = false, defaultValue = "") MultipartFile multipartFile, Post post) throws IOException {
+        if (!multipartFile.equals("1")) {
             String s3URL = s3Upload.upload(multipartFile);
             post.setImg(s3URL);
             postService.updatePost(post);
@@ -59,6 +59,12 @@ public class FileUploadController {
         }
         System.out.println(post);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/update/profile2")
+    public ResponseEntity<?> updateProfile(EnterUser enterUser) throws IOException {
+        enterUserService.updateUserInfo(enterUser);
+        return new ResponseEntity<EnterUser>(enterUser, HttpStatus.CREATED);
     }
 
     @PostMapping("/update/profile")
