@@ -1,6 +1,7 @@
 package com.fitsta.model.dao;
 
 import com.fitsta.model.dto.Post;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ public interface PostInfoDao {
     List<Post> getMyFollowerPostList(int myId);
 
     // 특정 유저가 등록한 post
-    List<Post> getUserPost(int userId);
+    List<Post> getUserPost(@Param("userId")int userId, @Param("myId")int myId);
 
 }

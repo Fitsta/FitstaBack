@@ -43,7 +43,7 @@
 			   (SELECT nickname FROM user WHERE userId = A.userId) AS userName,
 			   (SELECT COUNT(*) FROM comment WHERE postId = A.postId) AS commentCount,
 			   (SELECT profileImg FROM user WHERE userId = A.userId) AS profileImg,
-			   (SELECT COUNT(userId) FROM post_like WHERE userId = 2 AND postId = A.postId) AS isLike
+			   (SELECT COUNT(userId) FROM post_like WHERE userId = #{ myId } AND postId = A.postId) AS isLike
 		FROM post A
 		WHERE A.userId = #{ userId }
 		ORDER BY regDate DESC;

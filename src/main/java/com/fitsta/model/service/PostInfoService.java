@@ -11,6 +11,6 @@ public interface PostInfoService {
     List<Post> getMainPost(int myId);
 
     // 특정 유저가 등록한 post
-    List<Post> getUserPost(int userId);
+    List<Post> getUserPost(int userId, int myId);
 
 }
