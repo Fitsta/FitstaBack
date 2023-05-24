@@ -8,6 +8,6 @@ import java.sql.Date;
 public class CommentInfo {
     private String profileImg;
     private String comment;
-    private Date date;
+    private String date;
     private String nickname;
 }

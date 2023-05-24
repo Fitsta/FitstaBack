@@ -23,13 +23,13 @@
 	</select>
 
 	<select id="getFollowerList" parameterType="Integer" resultType="SearchUser">
-		SELECT u.profileImg, u.nickname, u.name,
+		SELECT u.userId, u.profileImg, u.nickname, u.name,
 			   (SELECT COUNT(*) FROM follow WHERE followingId = #{userId} and followerId = u.userId) AS isFollowing
 		FROM user u;
 	</select>
 
 	<select id="getFollowingList" parameterType="Integer" resultType="SearchUser">
-		SELECT u.profileImg, u.nickname, u.name,
+		SELECT u.userId, u.profileImg, u.nickname, u.name,
 			   (SELECT COUNT(*) FROM follow WHERE followerId = #{userId} and followerId = u.userId) AS isFollowed
 		FROM user u;
 	</select>
