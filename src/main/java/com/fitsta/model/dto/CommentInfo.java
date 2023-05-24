@@ -6,6 +6,7 @@ import java.sql.Date;
 @RequiredArgsConstructor
 @ToString
 public class CommentInfo {
+    private String userId;
     private String profileImg;
     private String comment;
     private String date;
