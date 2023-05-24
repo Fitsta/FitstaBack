@@ -31,14 +31,14 @@ public class SearchUserServiceImpl implements SearchUserService {
 
     // follower 정보 가져오기
     @Override
-    public List<SearchUser> getFollowerList(int userId) {
-        return searchUserDao.getFollowerList(userId);
+    public List<SearchUser> getFollowerList(int userId, int myId) {
+        return searchUserDao.getFollowerList(userId, myId);
     }
 
     // following 정보 가져오기
     @Override
-    public List<SearchUser> getFollowingList(int userId) {
-        return searchUserDao.getFollowingList(userId);
+    public List<SearchUser> getFollowingList(int userId, int myId) {
+        return searchUserDao.getFollowingList(userId, myId);
     }
 
 }

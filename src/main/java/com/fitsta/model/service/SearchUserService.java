@@ -14,8 +14,8 @@ public interface SearchUserService {
     List<SearchUser> searchUserByNameAndNickname(String myId, String keyword);
 
     // follower 목록
-    List<SearchUser> getFollowerList(@PathVariable int userId);
+    List<SearchUser> getFollowerList(int userId, int myId);
     // following 목록
-    List<SearchUser> getFollowingList(@PathVariable int userId);
+    List<SearchUser> getFollowingList(int userId, int myId);
 
 }

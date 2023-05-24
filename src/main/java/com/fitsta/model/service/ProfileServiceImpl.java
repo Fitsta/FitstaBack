@@ -25,6 +25,7 @@ public class ProfileServiceImpl implements ProfileService{
         profile.setPostCount(profile.getPostList().size());
         profile.setProfileImg(proFileDao.getProfileImg(userId));
         profile.setNickname(proFileDao.getUserNickname(userId));
+        profile.setUserId(userId);
         return profile;
     }
 }

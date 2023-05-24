@@ -15,7 +15,7 @@ public interface SearchUserDao {
     List<SearchUser> searchUserByNameAndNickname(@Param("myId") String myId, @Param("keyword") String keyword);
 
     // follower 목록
-    List<SearchUser> getFollowerList(@PathVariable int userId);
+    List<SearchUser> getFollowerList(@Param("userId") int userId, @Param("myId") int myId);
     // following 목록
-    List<SearchUser> getFollowingList(@PathVariable int userId);
+    List<SearchUser> getFollowingList(@Param("userId") int userId, @Param("myId") int myId);
 }

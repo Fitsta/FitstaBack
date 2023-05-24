@@ -17,5 +17,6 @@ public class Profile {
     private int postCount;
     private int followerCount;
     private int followingCount;
+    private int userId;
     private List<Post> postList;
 }

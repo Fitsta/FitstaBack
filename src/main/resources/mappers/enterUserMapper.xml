@@ -13,6 +13,19 @@
 		SELECT name, email, password, nickname, profileImg FROM user WHERE email = #{id}
 	</select>
 
+	<!-- 사진제외 유저 정보수정 -->
+	<update id="updateUserInfo" parameterType="EnterUser">
+		UPDATE user
+		SET name = #{name}, nickname = #{nickname}
+		WHERE userId = #{password};
+	</update>
+	<update id="updateUserInfoWhthImg" parameterType="EnterUser">
+		UPDATE user
+		SET name = #{name}, nickname = #{nickname}, profileImg = #{profileImg}
+		WHERE userId = #{password};
+	</update>
+
+
 	<select id="getUserIdByEmail" parameterType="String" resultType="int">
 		SELECT userId from user WHERE email = #{email};
 	</select>

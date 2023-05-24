@@ -37,17 +37,17 @@ public class SearchUserController {
         return new ResponseEntity<List<SearchUser>>(userList, HttpStatus.OK);
     }
 
-    @GetMapping("/searchFollower/{userId}")
+    @GetMapping("/searchFollower/{userId}/{myId}")
     @ApiOperation(value = "팔로워 목록 정보 전달")
-    public ResponseEntity<?> getFollowerList(@PathVariable int userId) {
-        List<SearchUser> followerList = searchUserService.getFollowerList(userId);
+    public ResponseEntity<?> getFollowerList(@PathVariable int userId, @PathVariable int myId) {
+        List<SearchUser> followerList = searchUserService.getFollowerList(userId, myId);
         return new ResponseEntity<List<SearchUser>>(followerList, HttpStatus.OK);
     }
 
-    @GetMapping("/searchFollowing/{userId}")
+    @GetMapping("/searchFollowing/{userId}/{myId}")
     @ApiOperation(value = "팔로잉 목록 정보 전달")
-    public ResponseEntity<?> getFollowingList(@PathVariable int userId) {
-        List<SearchUser> followingList = searchUserService.getFollowingList(userId);
+    public ResponseEntity<?> getFollowingList(@PathVariable int userId, @PathVariable int myId) {
+        List<SearchUser> followingList = searchUserService.getFollowingList(userId, myId);
         return new ResponseEntity<List<SearchUser>>(followingList, HttpStatus.OK);
     }
 }

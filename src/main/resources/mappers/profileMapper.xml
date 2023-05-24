@@ -12,13 +12,15 @@
 	</select>
 
 	<select id="getPostList" parameterType="int" resultType="Post">
-		SELECT * FROM post WHERE userId = #{userId};
+		SELECT * FROM post WHERE userId = #{userId} ORDER BY date DESC;
 	</select>
 
 	<select id="getProfileImg" parameterType="int" resultType="String">
 		SELECT profileImg FROM user WHERE userId = #{userId};
 	</select>
+
 	<select id="getUserNickname" parameterType="int" resultType="String">
 		SELECT nickname FROM user WHERE userId = #{userId};
 	</select>
+
 </mapper>

@@ -27,10 +27,10 @@ public class PostInfoController {
         return new ResponseEntity<List<Post>>(postList, HttpStatus.OK);
     }
 
-    @GetMapping("/detail/{userId}")
+    @GetMapping("/detail/{userId}/{myId}")
     @ApiOperation(value = "유저가 등록한 post 조회")
-    public ResponseEntity<?> getUserPostList(@PathVariable int userId) {
-        List<Post> postList = postInfoService.getUserPost(userId);
+    public ResponseEntity<?> getUserPostList(@PathVariable int userId, @PathVariable int myId) {
+        List<Post> postList = postInfoService.getUserPost(userId, myId);
         return new ResponseEntity<List<Post>>(postList, HttpStatus.OK);
     }
 }

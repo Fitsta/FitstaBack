@@ -6,7 +6,8 @@
 	<select id="getPost" parameterType="int" resultType="Post">
 		SELECT userId, postId, postComment, filterName, img
 		FROM post
-		WHERE postId = #{postId};
+		WHERE postId = #{postId}
+		ORDER BY date DESC;
 	</select>
 
 	<!-- Post 등록 -->

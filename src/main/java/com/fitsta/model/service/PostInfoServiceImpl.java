@@ -25,7 +25,7 @@ public class PostInfoServiceImpl implements PostInfoService {
     }
 
     @Override
-    public List<Post> getUserPost(int userId) {
-        return postInfoDao.getUserPost(userId);
+    public List<Post> getUserPost(int userId, int myId) {
+        return postInfoDao.getUserPost(userId, myId);
     }
 }

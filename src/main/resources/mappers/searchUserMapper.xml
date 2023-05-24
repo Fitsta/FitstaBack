@@ -23,15 +23,17 @@
 	</select>
 
 	<select id="getFollowerList" parameterType="Integer" resultType="SearchUser">
-		SELECT u.profileImg, u.nickname, u.name,
-			   (SELECT COUNT(*) FROM follow WHERE followingId = #{userId} and followerId = u.userId) AS isFollowing
-		FROM user u;
+		SELECT u.userId, u.profileImg, u.nickname, u.name,
+			   (SELECT COUNT(*) FROM follow WHERE followingId = #{myId} and followerId = u.userId) AS isFollow
+		FROM user u
+		WHERE (SELECT COUNT(*) FROM follow WHERE followingId = #{userId} and followerId = u.userId) = 1;
 	</select>
 
 	<select id="getFollowingList" parameterType="Integer" resultType="SearchUser">
-		SELECT u.profileImg, u.nickname, u.name,
-			   (SELECT COUNT(*) FROM follow WHERE followerId = #{userId} and followerId = u.userId) AS isFollowed
-		FROM user u;
+		SELECT u.userId, u.profileImg, u.nickname, u.name,
+		(SELECT COUNT(*) FROM follow WHERE followingId = #{myId} and followerId = u.userId) AS isFollow
+		FROM user u
+		WHERE (SELECT COUNT(*) FROM follow WHERE followerId = #{userId} and followingId = u.userId) = 1;
 	</select>
 	
 </mapper>
