@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fitsta.model.dao.CommentInfoDao">
     <select id="getCommentInfo" parameterType="Integer" resultType="CommentInfo">
-        SELECT u.profileImg, u.nickname, c.comment, c.date, u.userId
+        SELECT u.profileImg, u.nickname, c.comment, c.date, u.userId, c.commentId
         FROM user u JOIN comment c
         ON u.userId = c.userId
         WHERE c.postId = #{postId}
