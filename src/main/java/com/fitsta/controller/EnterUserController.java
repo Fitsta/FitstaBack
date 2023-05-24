@@ -23,4 +23,10 @@ public class EnterUserController {
         enterUserService.enterUser(user);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
+    // userId로 이름받기
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getNickname(@PathVariable int userId) {
+        String nickName = enterUserService.getUserNickname(userId);
+        return new ResponseEntity<String>(nickName, HttpStatus.OK);
+    }
 }
