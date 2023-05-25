@@ -37,7 +37,8 @@ public class KakaoAPI {
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=" + clientId);
             sb.append("&client_secret=" + clientSecret);
-            sb.append("&redirect_url=http://minsung.site/kakao_login/kakao");
+//            sb.append("&redirect_url=https://minsung.site/kakao_login/kakao");
+            sb.append("&redirect_url=http://localhost:8080/kakao_login/kakao");
             sb.append("&code=" + code);
 
             bw.write(sb.toString());

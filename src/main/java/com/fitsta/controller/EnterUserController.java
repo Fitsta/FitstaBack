@@ -3,6 +3,7 @@ package com.fitsta.controller;
 import com.fitsta.model.dto.EnterUser;
 import com.fitsta.model.service.EnterUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,13 @@ public class EnterUserController {
     // 회원 가입때 필요한 정보 넘기기("/")
     @PostMapping("/")
     public ResponseEntity<?> enter(@RequestBody EnterUser user) {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Access-Control-Allow-Origin", "https://poiuorine.github.io/");
+//        if (enterUserService.check(user.getEmail()) != null) {
+//            return new ResponseEntity<Void>(headers, HttpStatus.BAD_REQUEST);
+//        }
+//        enterUserService.enterUser(user);
+
         if (enterUserService.check(user.getEmail()) != null) {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }

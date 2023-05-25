@@ -4,6 +4,7 @@ import com.fitsta.model.dto.EnterUser;
 import com.fitsta.model.service.EnterUserService;
 import com.fitsta.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,11 @@ public class LocalLoginEnterController {
             result.put("message", FAIL);
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Access-Control-Allow-Origin", "https://poiuorine.github.io/");
+//        return new ResponseEntity<Map<String, Object>>(result, headers, status);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Access-Control-Allow-Origin", "https://poiuorine.github.io/");
         return new ResponseEntity<Map<String, Object>>(result, status);
     }
 }
