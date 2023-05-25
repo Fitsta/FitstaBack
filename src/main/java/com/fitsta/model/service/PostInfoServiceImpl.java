@@ -2,6 +2,7 @@ package com.fitsta.model.service;
 
 import com.fitsta.model.dao.PostInfoDao;
 import com.fitsta.model.dto.Post;
+import com.fitsta.model.dto.PostInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -27,5 +28,10 @@ public class PostInfoServiceImpl implements PostInfoService {
     @Override
     public List<Post> getUserPost(int userId, int myId) {
         return postInfoDao.getUserPost(userId, myId);
+    }
+
+    @Override
+    public List<PostInfo> getLikeList(int userId) {
+        return postInfoDao.getLikeList(userId);
     }
 }

@@ -34,7 +34,7 @@ public class KaKaoController {
     public String main() {
         String url = "https://kauth.kakao.com/oauth/authorize?client_id=" +
                 clientId +
-                "&redirect_uri=http://minsung.site/kakao_login/kakao&response_type=code";
+                "&redirect_uri=https://minsung.site/kakao_login/kakao&response_type=code";
         return url;
     }
 
@@ -53,7 +53,8 @@ public class KaKaoController {
             session.setAttribute("userId", userInfo.get("email"));
             session.setAttribute("access_token", access_token);
         }
-        redirectView.setUrl("http://localhost:8081/kakao/" + userInfo.get("email"));
+//        redirectView.setUrl("https://poiuorine.github.io/kakao/" + userInfo.get("email"));
+        redirectView.setUrl("http:/localhost:8080/kakao/" + userInfo.get("email"));
         redirectView.addStaticAttribute("user", userInfo);
 
         // 3. 기존 디비에 아이디 없으면 가입
