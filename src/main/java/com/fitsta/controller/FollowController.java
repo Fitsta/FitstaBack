@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 public class FollowController {
     @Autowired
     FollowService followService;
-
     // 팔로우
     @PostMapping("/")
     public ResponseEntity<?> follow(@RequestBody Follow follow) {
