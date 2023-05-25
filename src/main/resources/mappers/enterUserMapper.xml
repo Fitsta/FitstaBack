@@ -30,6 +30,10 @@
 		SELECT userId from user WHERE email = #{email};
 	</select>
 
+	<select id="getUserNickname" parameterType="int" resultType="String">
+		SELECT nickname from user WHERE userId = #{userId};
+	</select>
+
 	<select id="getUserInfoByEmail" resultType="EnterUser" parameterType="String">
 		SELECT userId, name, email, nickname, profileImg FROM user WHERE email = #{email};
 	</select>

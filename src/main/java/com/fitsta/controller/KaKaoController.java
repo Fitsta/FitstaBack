@@ -34,7 +34,7 @@ public class KaKaoController {
     public String main() {
         String url = "https://kauth.kakao.com/oauth/authorize?client_id=" +
                 clientId +
-                "&redirect_uri=http://localhost:8080/kakao_login/kakao&response_type=code";
+                "&redirect_uri=http://minsung.site/kakao_login/kakao&response_type=code";
         return url;
     }
 
