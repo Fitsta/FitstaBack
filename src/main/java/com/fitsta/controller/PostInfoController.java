@@ -1,6 +1,7 @@
 package com.fitsta.controller;
 
 import com.fitsta.model.dto.Post;
+import com.fitsta.model.dto.PostInfo;
 import com.fitsta.model.service.PostInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,5 +33,12 @@ public class PostInfoController {
     public ResponseEntity<?> getUserPostList(@PathVariable int userId, @PathVariable int myId) {
         List<Post> postList = postInfoService.getUserPost(userId, myId);
         return new ResponseEntity<List<Post>>(postList, HttpStatus.OK);
+    }
+
+    @GetMapping("/like/{userId}")
+    @ApiOperation(value = "좋아요 누른 post 조회")
+    public ResponseEntity<?> getLikeList(@PathVariable int userId) {
+        List<PostInfo> postList = postInfoService.getLikeList(userId);
+        return new ResponseEntity<List<PostInfo>>(postList, HttpStatus.OK);
     }
 }

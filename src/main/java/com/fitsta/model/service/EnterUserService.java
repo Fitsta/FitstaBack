@@ -17,4 +17,6 @@ public interface EnterUserService {
     void updateUserInfo(EnterUser enterUser);
     // 사진포함 유저정보 수정
     void updateUserInfoWhthImg(EnterUser enterUser);
+    // userId로 이름받기
+    String getUserNickname(int userId);
 }

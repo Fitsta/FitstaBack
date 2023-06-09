@@ -46,4 +46,9 @@ public class EnterUserServiceImpl implements EnterUserService{
     public void updateUserInfoWhthImg(EnterUser enterUser) {
         enterUserDao.updateUserInfoWhthImg(enterUser);
     }
+
+    @Override
+    public String getUserNickname(int userId) {
+        return enterUserDao.getUserNickname(userId);
+    }
 }

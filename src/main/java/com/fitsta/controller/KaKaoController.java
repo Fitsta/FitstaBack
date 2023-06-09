@@ -4,6 +4,7 @@ import com.fitsta.model.dto.EnterUser;
 import com.fitsta.model.service.EnterUserService;
 import com.fitsta.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,8 @@ public class KaKaoController {
 
     private static final String SUCCESS = "succes";
     private static final String FAIL = "fail";
-    private String clientId = "a7e51c2902f13febf913e240bbf81f77";
+
+    private String clientId = ";
 
     KakaoAPI kakaoApi = new KakaoAPI();
 
@@ -34,7 +36,10 @@ public class KaKaoController {
     public String main() {
         String url = "https://kauth.kakao.com/oauth/authorize?client_id=" +
                 clientId +
+//                "&redirect_uri=https://minsung.site/kakao_login/kakao&response_type=code";
+//                "&redirect_uri=http://3.38.88.28/kakao_login/kakao&response_type=code";
                 "&redirect_uri=http://localhost:8080/kakao_login/kakao&response_type=code";
+        System.out.println(url);
         return url;
     }
 
@@ -42,7 +47,8 @@ public class KaKaoController {
     public RedirectView kakaoCallback(@RequestParam String code, HttpSession session) {
 
         RedirectView redirectView = new RedirectView();
-
+        System.out.println(code);
+        System.out.println("여긴 어케옴");
         // 1. 코드전달
         String access_token = kakaoApi.getAccessToken(code);
 
@@ -53,11 +59,12 @@ public class KaKaoController {
             session.setAttribute("userId", userInfo.get("email"));
             session.setAttribute("access_token", access_token);
         }
+//        redirectView.setUrl("https://poiuorine.github.io/kakao/" + userInfo.get("email"));
         redirectView.setUrl("http://localhost:8081/kakao/" + userInfo.get("email"));
+//        redirectView.setUrl("http://localhost:8080/kakao/" + userInfo.get("email"));
         redirectView.addStaticAttribute("user", userInfo);
 
         // 3. 기존 디비에 아이디 없으면 가입
-
         String email = userInfo.get("email").toString();
         String nickname = userInfo.get("nickname").toString();
         String profileImg = userInfo.get("profileImg").toString();

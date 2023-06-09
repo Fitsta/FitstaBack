@@ -49,4 +49,17 @@
 		ORDER BY regDate DESC;
 	</select>
 
+	<!-- 좋아요 리스트 -->
+	<select id="getLikeList" parameterType="int" resultType="PostInfo">
+		SELECT A.postId, A.userId AS writerId, A.date AS regDate, A.postComment, A.filterName, A.img,
+			(SELECT COUNT(*) FROM post_like WHERE postId = A.postId) AS likeCount,
+			(SELECT nickname FROM user WHERE userId = A.userId) AS userName,
+			(SELECT COUNT(*) FROM comment WHERE postId = A.postId) AS commentCount,
+			(SELECT profileImg FROM user WHERE userId = A.userId) AS profileImg,
+		    1 AS isLike
+		FROM post A JOIN post_like B
+		ON A.postId = B.postId
+		WHERE B.userId = #{userId};
+	</select>
+
 </mapper>
