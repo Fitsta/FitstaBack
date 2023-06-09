@@ -10,11 +10,12 @@ import java.util.HashMap;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Value;
 
 public class KakaoAPI {
 
-    private String clientId = "a7e51c2902f13febf913e240bbf81f77";
-    private String clientSecret = "6RjNLtsyllhFj46nTNIKBWwUj8UsIlOq";
+    private String clientId = "";
+    private String clientSecret = "";
 
     public String getAccessToken(String code) {
 
@@ -38,6 +39,7 @@ public class KakaoAPI {
             sb.append("&client_id=" + clientId);
             sb.append("&client_secret=" + clientSecret);
 //            sb.append("&redirect_url=https://minsung.site/kakao_login/kakao");
+//            sb.append("&redirect_url=http://3.38.88.28/kakao_login/kakao");
             sb.append("&redirect_url=http://localhost:8080/kakao_login/kakao");
             sb.append("&code=" + code);
 
