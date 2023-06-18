@@ -27,7 +27,7 @@ public class KaKaoController {
     private static final String SUCCESS = "succes";
     private static final String FAIL = "fail";
 
-    private String clientId = ";
+    private String clientId = "";
 
     KakaoAPI kakaoApi = new KakaoAPI();
 
@@ -47,8 +47,6 @@ public class KaKaoController {
     public RedirectView kakaoCallback(@RequestParam String code, HttpSession session) {
 
         RedirectView redirectView = new RedirectView();
-        System.out.println(code);
-        System.out.println("여긴 어케옴");
         // 1. 코드전달
         String access_token = kakaoApi.getAccessToken(code);
 
